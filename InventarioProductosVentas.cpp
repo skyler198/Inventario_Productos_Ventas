@@ -15,11 +15,31 @@ struct Venta {
     float precioTotal;
 };
 
+void registrarProducto(Producto productos[], int &cantidad){
+	
+	cout << "Ingrese los datos del producto #" << cantidad + 1 << " a registar :" << endl;
+	
+	cout << "\nNombre del producto: ";
+	cin.ignore();
+	getline(cin, productos[cantidad].nombre);
+
+	cout << "Precio del producto: ";
+	cin >> productos[cantidad].precio;
+	
+	cantidad++;
+
+}
+
+
+
 void menu(){
 	char opcion;
+	const int TAM = 100;
+	Producto productos[TAM];
+	int cantidadProducto = 0;
 	
 	do{
-		cout << "            ---------------MENU PRINCIPAL---------------\n" << endl;
+		cout << "\n            ---------------MENU PRINCIPAL---------------\n" << endl;
 			
 		cout << "\n ---------------------------------------------------------------------\n";
 		cout << "  a) Registrar un nuevo producto." << endl;
@@ -38,7 +58,8 @@ void menu(){
 		
 		switch (opcion){
 			case 'a':
-				//registarProducto();
+				registrarProducto(productos, cantidadProducto);
+				system("pause");
 				break;
 			case 'b':
 				//listaProductosRegistrados();
@@ -65,15 +86,16 @@ void menu(){
 				cout << "\n -----------------------------------------";
 				cout << "\n  GRACIAS POR USAR MI PROGRAMA <3!" << endl;
 				cout << "\n  Saliendo del programa ..." << endl;
-				cout << "  PROGRAMA FINALIZADO!" << endl;
 				system("pause");
+				cout << "  PROGRAMA FINALIZADO!" << endl;
+				
 				break;
 			default:
 				cout << "\n  INVALIDO, porfavor ingrese una opcion valida\n" << endl;
 				system("pause");
-				break;
-				
+				break;		
 		}
+		system("cls");
 	}while (opcion != 's');
 }
 
