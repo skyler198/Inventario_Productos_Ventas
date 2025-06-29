@@ -64,6 +64,49 @@ void buscarProducto(Producto productos[], int cantidad){
     }
 }
 
+void ActualizarDatosProducto(Producto productos[], int cantidad){
+	
+	int opcion;
+
+	cout << "Actualizar productos:" << endl;
+	for (int i = 0; i < cantidad; i++){
+		cout << i + 1 << ") Nombre: " << productos[i].nombre << " -- Precio S/.: " << productos[i].precio << endl;
+	}
+	
+	do {
+		cout << "Ingrese el numero del producto que desea actualizar: " << endl;
+		cin.ignore();
+		cin >> opcion;
+		
+		if (opcion >= 1 && opcion <= cantidad){
+			
+			int posicion = opcion - 1;
+			
+			cin.ignore(); //limpia el salto de línea pendiente del cin anterior nwn
+			cout << "Nuevo nombre del producto (nombre actual: " << productos[posicion].nombre << "): ";
+		    getline(cin, productos[posicion].nombre);
+		
+		    cout << "Nuevo precio del producto (precio actual: S/. " << productos[posicion].precio << "): ";
+		    cin >> productos[posicion].precio;
+		
+		    cout << "\nProducto actualizado correctamente.\n";	
+		} else {
+			cout << "Opcion invalida, intentelo de nuevo" << endl;
+			system("pause"); // pausa para que el usuario lea el mensaje
+			system("cls"); // limpiar pantalla
+			
+			cout << "Actualizar productos:" << endl;
+			for (int i = 0; i < cantidad; i++){
+				cout << i + 1 << ") Nombre: " << productos[i].nombre << " -- Precio S/.: " << productos[i].precio << endl;
+			}
+		}
+	}while (opcion < 1 || opcion > cantidad);
+		
+	
+
+	
+}
+
 void menu(){
 	char opcion;
 	const int TAM = 100;
@@ -102,7 +145,8 @@ void menu(){
 				system("pause");
 				break;
 			case 'd':
-				//ActualizarDatosProducto();
+				ActualizarDatosProducto(productos, cantidadProducto);
+				system("pause");
 				break;
 			case 'e':
 				//eliminarProducto();
