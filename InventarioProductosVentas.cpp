@@ -35,14 +35,34 @@ void listaProductosRegistrados(Producto productos[], int &cantidad){
 	cout << "Lista de productos registrados:" << endl;
 	
 	for (int i = 0; i < cantidad; i++){
-		cout << "\n  ------------------------ \n";
-		cout << " |" << i + 1 << ". Nombre: " << productos[i].nombre << "    |" << endl;
-		cout << " | precio s/.: " << productos[i].precio << "        |" << endl;
-		cout << "  ------------------------ \n";
+		cout << "\n  ------------------------- \n";
+		cout << " | " << i + 1 << ". Nombre: " << productos[i].nombre << "    |" << endl;
+		cout << " |    precio s/.: " << productos[i].precio << "      |" << endl;
+		cout << "  ------------------------- \n";
 	}
 	
 }
 
+void buscarProducto(Producto productos[], int cantidad){
+	
+    string nombreBuscado;
+
+    cout << "\nbuscar producto:\n" << endl;
+    cin.ignore(); 
+    cout << "Nombre del producto: ";
+    getline(cin, nombreBuscado);
+
+    for (int i = 0; i < cantidad; i++) {
+        if (productos[i].nombre == nombreBuscado) {
+            cout << "\n  ------------------------- \n";
+            cout << " | " << i + 1 << ". Nombre: " << productos[i].nombre << "    |" << endl;
+            cout << " |    precio S/.: " << productos[i].precio << "      |" << endl;
+            cout << "  ------------------------- \n";
+
+            break; // Termina la búsqueda al encontrar el producto
+        }
+    }
+}
 
 void menu(){
 	char opcion;
@@ -78,7 +98,8 @@ void menu(){
 				system("pause");
 				break;
 			case 'c':
-				//buscarProducto();
+				buscarProducto(productos, cantidadProducto);
+				system("pause");
 				break;
 			case 'd':
 				//ActualizarDatosProducto();
