@@ -101,11 +101,27 @@ void ActualizarDatosProducto(Producto productos[], int cantidad){
 			}
 		}
 	}while (opcion < 1 || opcion > cantidad);
-		
-	
-
-	
 }
+
+void eliminarProducto(Producto productos[], int &cantidad){
+	int opcion;
+	cout << "Eliminar Producto:" << endl;
+	
+	for (int i = 0; i < cantidad; i++){
+		cout << i + 1 << ") Nombre: " << productos[i].nombre << " -- Precio S/.: " << productos[i].precio << endl;
+	}
+	
+	cout << "Ingrese el numero del producto que desea eliminar: ";
+	cin >> opcion;
+	
+	for (int i = opcion - 1; i < cantidad - 1; i++) {
+        productos[i] = productos[i + 1];
+    }
+	cout << "Producto eliminado correctamente" << endl;
+	
+	cantidad--;
+}
+
 
 void menu(){
 	char opcion;
@@ -149,7 +165,8 @@ void menu(){
 				system("pause");
 				break;
 			case 'e':
-				//eliminarProducto();
+				eliminarProducto(productos, cantidadProducto);
+				system("pause");
 				break;
 			case 'f':
 				//registrarVenta();
@@ -166,7 +183,7 @@ void menu(){
 				cout << "\n  Saliendo del programa ..." << endl;
 				system("pause");
 				cout << "  PROGRAMA FINALIZADO!" << endl;
-				
+				system("pause");
 				break;
 			default:
 				cout << "\n  INVALIDO, porfavor ingrese una opcion valida\n" << endl;
