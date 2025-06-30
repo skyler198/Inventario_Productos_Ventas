@@ -158,6 +158,20 @@ void registrarVenta(Venta ventas[], int &cantidadVentas, Producto productos[], i
     cantidadVentas++;
 }
 
+void listarVentasRealizadas(Venta ventas[], int cantidadVenta){
+	
+	cout << "\nlistado de ventas realizadas\n";
+
+    for (int i = 0; i < cantidadVenta; i++) {
+        cout << "\n------------------------------";
+        cout << "\nVenta #" << ventas[i].idVenta;
+        cout << "\nProducto: " << ventas[i].producto;
+        cout << "\nCantidad: " << ventas[i].cantidad;
+        cout << "\nTotal: S/. " << ventas[i].precioTotal;
+        cout << "\n------------------------------\n";
+    }
+}
+
 void menu(){
 	char opcion;
 	const int TAM = 100;
@@ -210,7 +224,8 @@ void menu(){
 				system("pause");
 				break;
 			case 'g':
-				//listarVentasRealizadas();
+				listarVentasRealizadas(ventas, cantidadVenta);
+				system("pause");
 				break;
 			case 'h':
 				//CalcularTotalVentas();
