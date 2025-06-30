@@ -144,7 +144,7 @@ void registrarVenta(Venta ventas[], int &cantidadVentas, Producto productos[], i
     cout << "Ingrese la cantidad que se vendio del producto seleccionado: ";
     cin >> cantidadVendida;
     
-    // Registrar venta
+    // Registramos la venta
     ventas[cantidadVentas].idVenta = cantidadVentas + 1;
     ventas[cantidadVentas].producto = productos[posicion].nombre;
     ventas[cantidadVentas].cantidad = cantidadVendida;
@@ -170,6 +170,21 @@ void listarVentasRealizadas(Venta ventas[], int cantidadVenta){
         cout << "\nTotal: S/. " << ventas[i].precioTotal;
         cout << "\n------------------------------\n";
     }
+}
+
+void calcularTotalVentas(Venta ventas[], int cantidadVenta){
+	
+	float totalGeneral = 0;
+
+    for (int i = 0; i < cantidadVenta; i++) {
+        totalGeneral += ventas[i].precioTotal;
+    }
+	
+	cout << "\n------------------------------------------";
+    cout << "\nTotal de ventas: S/. "<< totalGeneral;
+    cout << "\n------------------------------------------\n";
+
+	
 }
 
 void menu(){
@@ -228,7 +243,8 @@ void menu(){
 				system("pause");
 				break;
 			case 'h':
-				//CalcularTotalVentas();
+				calcularTotalVentas(ventas, cantidadVenta);
+				system("pause");
 				break;
 			case 's':
 				cout << "\n -----------------------------------------";
