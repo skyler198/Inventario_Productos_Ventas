@@ -122,12 +122,49 @@ void eliminarProducto(Producto productos[], int &cantidad){
 	cantidad--;
 }
 
+void registrarVenta(Venta ventas[], int &cantidadVentas, Producto productos[], int cantidadProducto){
+	
+	cout << "Registrar venta" << endl;
+	cout <<"\nLista de productos disponibles para venta:" << endl;
+	
+	for (int i = 0; i < cantidadProducto; i++){
+		cout << "\n  ------------------------- \n";
+		cout << " | " << i + 1 << ". Nombre: " << productos[i].nombre << "    |" << endl;
+		cout << " |    precio s/.: " << productos[i].precio << "      |" << endl;
+		cout << "  ------------------------- \n";
+	}
+	
+	int opcion;
+    cout << "Seleccione el numero del producto a vender: ";
+    cin >> opcion;
+    
+    int posicion = opcion - 1;
+    int cantidadVendida;
+
+    cout << "Ingrese la cantidad que se vendio del producto seleccionado: ";
+    cin >> cantidadVendida;
+    
+    // Registrar venta
+    ventas[cantidadVentas].idVenta = cantidadVentas + 1;
+    ventas[cantidadVentas].producto = productos[posicion].nombre;
+    ventas[cantidadVentas].cantidad = cantidadVendida;
+    ventas[cantidadVentas].precioTotal = productos[posicion].precio * cantidadVendida;
+
+    cout << "\nVenta registrada correctamente." << endl;
+    cout << "|  Producto: " << ventas[cantidadVentas].producto << endl;
+    cout << "|  Cantidad: " << ventas[cantidadVentas].cantidad << endl;
+    cout << "|  Total: S/. " << ventas[cantidadVentas].precioTotal << endl;
+
+    cantidadVentas++;
+}
 
 void menu(){
 	char opcion;
 	const int TAM = 100;
 	Producto productos[TAM];
 	int cantidadProducto = 0;
+	Venta ventas [TAM];
+	int cantidadVenta = 0;
 	
 	do{
 		cout << "\n   ---------------MENU PRINCIPAL---------------" << endl;
@@ -169,7 +206,8 @@ void menu(){
 				system("pause");
 				break;
 			case 'f':
-				//registrarVenta();
+				registrarVenta(ventas, cantidadVenta, productos, cantidadProducto);
+				system("pause");
 				break;
 			case 'g':
 				//listarVentasRealizadas();
